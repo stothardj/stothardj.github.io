@@ -26,6 +26,8 @@ This is pretty straight forward. I just asked Gemini to pick 25 topics and 4 sub
 
 ### Step 2: Generate the images
 
+![Fairy](/assets/images/fairy.png)
+
 Next was generating each of the images. So using Python I just looped over the list generated above I just called Gemini directly:
 
 ```python
