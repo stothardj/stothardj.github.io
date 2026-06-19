@@ -28,7 +28,8 @@ This is pretty straight forward. I just asked Gemini to pick 25 topics and 4 sub
 
 Next was generating each of the images. So using Python I just looped over the list generated above I just called Gemini directly:
 
-{% highlight python %}
+```python
+{% raw %}
 prompt = f"""
 Generate a cartoon image of a {subject}. Use the bright, vibrant, cute style that you might expect from a phone app icon. Keep it accurate. Only include the {subject}; no other objects or effects. Use a plain white background.
 """
@@ -40,7 +41,8 @@ interaction = client.interactions.create(
 
 full_path = dir_path / Path(f'{subject}.png')
 full_path.write_bytes(base64.b64decode(interaction.output_image.data))
-{% endhighlight %}
+{% endraw %}
+```
 
 The only quirk here is I learned it's a lot better to ask for a "white background" and not "no background".
 Occasionally "no background" leads to the checkerboard pattern which you often see representing transparency online.
@@ -57,7 +59,8 @@ a forground image only a background image than it is to try to separate them aft
 
 Again I'm calling Gemini from python in a loop, but this time I want to output JSON instead of an image.
 
-{% highlight python %}
+```python
+{% raw %}
         prompt = f"""There's a cartoon image of a {subject} which I need to put on top of a background for a kid's app. What is an appropriate background to use for this?
 
 IMPORTANT: Respond using JSON! The response to this prompt will be used non-interactively. Format as follows:
@@ -75,7 +78,8 @@ response = client.models.generate_content(
 
 background = Background.model_validate_json(response.text)
 background_choice[topic].append((subject, background.background))
-{% endhighlight %}
+{% endraw %}
+```
 
 As any AI expert will tell you, you really want to scream at it to output JSON.
 
@@ -85,14 +89,15 @@ This is actually exactly as generating the background images.
 I actually didn't ask Gemini to put the foreground image in place, but it might have worked.
 Don't worry, we'll get to multimodal inputs soon.
 
-{% highlight python %}
+```python
+{% raw %}
 prompt = f'Generate {background.lower()}. Leave space in the middle of the image for me to add the subject in later.'
 interaction = client.interactions.create(
     model='gemini-3.1-flash-image',
     input=prompt,
 )
-{% endhighlight %}
-
+{% endraw %}
+```
 
 ### Step 5: Highlighting the "important" parts of the image
 
@@ -105,7 +110,8 @@ Gemini to choose the important parts. After a lot of trial and error I managed t
 which led to decent results. The trick was to require the highlights be overlayed onto the original
 image. Without this Gemini had a strong tendancy to just generate a different image.
 
-{% highlight python %}
+```python
+{% raw %}
 TEXT_PROMPT = f"""
 Create a version of this image with BOLD well-defined lines a kid should trace in a tracing app. Only include the very important lines in order to get a basic outline of the form. The toddler will only have patience for at most 10 lines. Use simple curves for each line, ignoring small bumps and details.
 
@@ -140,7 +146,8 @@ def process_image(input_path, rel_path):
             print('Has inline data!')
             image = part.as_image()
             image.save(output_path)
-{% endhighlight %}
+{% endraw %}
+```
 
 ### Step 6: Trace the image
 
@@ -153,7 +160,8 @@ Each image will actually be generated with multiple thresholds for the greyscale
 black and white conversion. Unfortunately there was not one divider which was universally
 best across images.
 
-{% highlight python %}
+```python
+{% raw %}
 # Read the image using cv2
 img = cv2.imread(str(input_path))
 if img is None:
@@ -177,7 +185,8 @@ for thresh in thresholds:
 
     # Convert to black and white
     bw = cv2.threshold(blurred, thresh, 255, cv2.THRESH_BINARY)[1]
-{% endhighlight %}
+{% endraw %}
+```
 
 Now that we have a black and white version of the image, it's time
 for some libraries to do the processing. skelotonize from `skimage.morphology`
@@ -191,7 +200,8 @@ will end up with a node at every step along the path. `rdp` fixes this
 by simplifying the nodes in the path. It even has a configurable epsilon
 fuzzy factor.
 
-{% highlight python %}
+```python
+{% raw %}
 # Invert black and white
 bw_invert = invert(bw)
 
@@ -208,7 +218,8 @@ try:
     write_skeleton_to_svg(simplified_paths, width, height, output_path)
 except Exception as e:
     print(f'Failed to skeletonize {output_name}: {e}')
-{% endhighlight %}
+{% endraw %}
+```
 
 ### Step 7: Manually putting it together
 
@@ -228,7 +239,8 @@ The last step is importing the svgs into the app.
 I did the first couple manually, then asked Antigravity CLI to generate a python
 script to import the rest. It's not too intersting, the core of it looks like this:
 
-{% highlight python %}
+```python
+{% raw %}
   page_svelte_content = f"""<script lang="ts">
 import {{ onMount }} from 'svelte';
 import DrawArea from '$lib/components/DrawArea.svelte';
@@ -247,7 +259,8 @@ const {paths_var_name} = [
 """
   with open(os.path.join(dest_dir, "+page.svelte"), 'w', encoding='utf-8') as page_f:
     page_f.write(page_svelte_content)
-{% endhighlight %}
+{% endraw %}
+```
 
 And with that I end up with a different page for each image to be traced. ex. `myapp/trace/panda`.
 And it updates the JSON structure I'm using from the home page for the image picker.
