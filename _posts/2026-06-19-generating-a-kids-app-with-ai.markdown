@@ -87,6 +87,8 @@ As any AI expert will tell you, you really want to scream at it to output JSON.
 
 ### Step 4: Generate the background images
 
+![Fairy Background](/assets/images/fairy-background.png)
+
 This is actually exactly as generating the background images.
 I actually didn't ask Gemini to put the foreground image in place, but it might have worked.
 Don't worry, we'll get to multimodal inputs soon.
@@ -102,6 +104,8 @@ interaction = client.interactions.create(
 ```
 
 ### Step 5: Highlighting the "important" parts of the image
+
+![Fairy Simplified](/assets/images/fairy-simplified.png)
 
 I'm a patient adult but even I don't have the patience to trace every feather a peacock has.
 But how can I define what the "important" parts of an image are. It's not just the biggest.
@@ -152,6 +156,8 @@ def process_image(input_path, rel_path):
 ```
 
 ### Step 6: Trace the image
+
+![Fairy Traced](/assets/images/fairy-traced.svg)
 
 So far all the images are pngs, but I really need a vector file so that the app knows where the
 kid needs to trace. png -> svg is not trivial, and I'll talk about the failed paths later.
@@ -224,6 +230,8 @@ except Exception as e:
 ```
 
 ### Step 7: Manually putting it together
+
+![Fairy Final](/assets/images/fairy.svg)
 
 There's a few things the AI doesn't yet do in this pipeline.
 
