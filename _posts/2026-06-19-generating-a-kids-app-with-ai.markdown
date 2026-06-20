@@ -6,18 +6,18 @@ categories: ai
 ---
 
 My daughter just turned three years old so she's allowed some screen time.
-This could also be an opportunity to practice her fine motor skills, but the
-first couple apps I checked out seemed a bit underhanded. They were trying to
+This could also be an opportunity to practice her fine motor skills. The
+first couple apps I checked out felt like a ripoff though. They were trying to
 get me into an annual subscription just for tracing some pictures.
 
-The promise of AI is that I should be able to just ask an agent to make this
-app and let my daugter try it. So let's try it.
+The promise of AI should be that I can just ask an agent to make this
+app and let my daugter play. So let's try it.
 
 ## The Final Product
 
-Let's skip ahead a bit. What did I actually generate in the end?
+Let's skip ahead. What did I actually generate in the end?
 
-Well, there's the phone app of course. But let's also talk about the content.
+Before we talk about the phone app let's talk about the content.
 How do we get images for the kid to trace?
 
 ### Step 1: Generate the list of images to generate
@@ -28,7 +28,9 @@ This is pretty straight forward. I just asked Gemini to pick 25 topics and 4 sub
 
 ![Fairy](/assets/images/fairy.png)
 
-Next was generating each of the images. So using Python I just looped over the list generated above I just called Gemini directly:
+Next was generating each of the images. Using python I just looped over the list generated above and 
+had it just call Gemini using Google's genai library for each subject in the list. Here's what was in
+that loop:
 
 ```python
 {% raw %}
@@ -46,18 +48,20 @@ full_path.write_bytes(base64.b64decode(interaction.output_image.data))
 {% endraw %}
 ```
 
-The only quirk here is I learned it's a lot better to ask for a "white background" and not "no background".
-Occasionally "no background" leads to the checkerboard pattern which you often see representing transparency online.
-But it's not transparent, it's actually Gemini mimicing the pattern. Quite funny, but it also points out a useful
-lesson when working with these unpredictable genai tools. Try things on small samples and save intermediate steps so
-mistakes can be re-run.
+The prompts throughout this post will reflect a lot of the trial and error that comes with trying to get
+genai to do the right thing. One quirk I found here is it's a lot better to ask for a "white background" and
+not "no background". Occasionally "no background" leads to the checkerboard pattern which you often see
+representing transparency online. But it's not transparent, it's actually Gemini mimicing the pattern.
 
 ### Step 3: Pick the backgrounds
 
-Each image is going to have to be placed on a background. You may be wondering why these are generated separately.
+Each image is going to have to be placed on a background, so the next step is choosing what those backgrounds
+will be. I do this independently of actually generating the background images so I can quickly take a look at
+what it's coming up with. Generating images is cheap, but not free.
 
-Well, in some other processing steps I'll want to only operate on the foreground and it's actually easier to combine
-a forground image only a background image than it is to try to separate them after the fact.
+You may be wondering why the backgrounds are generated separately. Well, in some other processing steps I'll want to
+only operate on the foreground and it's easier to combine a forground image with a background image
+than it is to try to separate the foreground from an image which generated both at the same time.
 
 Again I'm calling Gemini from python in a loop, but this time I want to output JSON instead of an image.
 
@@ -83,7 +87,7 @@ background_choice[topic].append((subject, background.background))
 {% endraw %}
 ```
 
-As any AI expert will tell you, you really want to scream at it to output JSON.
+As any AI expert will tell you, screaming at models that they should output JSON is a critical part of the job.
 
 ### Step 4: Generate the background images
 
@@ -108,13 +112,15 @@ interaction = client.interactions.create(
 ![Fairy Simplified](/assets/images/fairy-simplified.png)
 
 I'm a patient adult but even I don't have the patience to trace every feather a peacock has.
+No way a three year old would do it.
+
 But how can I define what the "important" parts of an image are. It's not just the biggest.
-The peacock's feathres are bigger than the rest of it.
+The peacock's feathers are bigger than the rest of it.
 
 This lack of clear success criteria led me to again, just see what would happen if I asked
 Gemini to choose the important parts. After a lot of trial and error I managed to create a prompt
-which led to decent results. The trick was to require the highlights be overlayed onto the original
-image. Without this Gemini had a strong tendancy to just generate a different image.
+which led to decent results. The trick was to require the bold lines be overlayed onto the original
+image. Without this, Gemini had a strong tendancy to just generate a different image.
 
 ```python
 {% raw %}
@@ -160,11 +166,11 @@ def process_image(input_path, rel_path):
 ![Fairy Traced](/assets/images/fairy-traced.svg)
 
 So far all the images are pngs, but I really need a vector file so that the app knows where the
-kid needs to trace. png -> svg is not trivial, and I'll talk about the failed paths later.
+kid needs to trace. Converting a png to an svg is not trivial, and I'll talk about the failed paths later.
 This is perhaps the most interesting part of the project.
 
 First we import the image and convert it to black and white using OpenCV.
-Each image will actually be generated with multiple thresholds for the greyscale to
+Each image will be generated with multiple thresholds for the greyscale to
 black and white conversion. Unfortunately there was not one divider which was universally
 best across images.
 
@@ -205,8 +211,8 @@ invert it using `skimage.util`. Next we analyze the skeleton using
 we just hope that it works for a different threshold. `skan` generates
 path coordinates, but it will generate many extra nodes. A straight line
 will end up with a node at every step along the path. `rdp` fixes this
-by simplifying the nodes in the path. It even has a configurable epsilon
-fuzzy factor.
+by eliminating the redundant nodes in the path. It even has a configurable
+epsilon fuzzy factor.
 
 ```python
 {% raw %}
@@ -241,7 +247,8 @@ so it leaves all of them disjoint. I used Inkscape's node joining to do this.
 `rdp` can simplify straight lines, but it doesn't simplify curves.
 There's some work in this area I found, but nothing easily callable from python
 that I have found yet. And as I already have each file open in Inkscape at the
-last step, I just use "Simplify Path".
+last step, I just use "Simplify Path". Note, python can actually call Inkscape but
+that's only intersting if I solve automating the path joining.
 
 ### Step 8: Importing the images into the app
 
@@ -252,7 +259,6 @@ script to import the rest. It's not too intersting, the core of it looks like th
 ```python
 {% raw %}
   page_svelte_content = f"""<script lang="ts">
-import {{ onMount }} from 'svelte';
 import DrawArea from '$lib/components/DrawArea.svelte';
 import {pascal_name}Image from './{component_filename}';
 
@@ -275,10 +281,45 @@ const {paths_var_name} = [
 And with that I end up with a different page for each image to be traced. ex. `myapp/trace/panda`.
 And it updates the JSON structure I'm using from the home page for the image picker.
 
-## All the paths which didn't work
+## The phone app
 
-AI could not do this by itself. That was my first attempt. Just ask an agent to build this app.
-It didn't work. But AI did allow exploring lots of bad ideas faster.
+### The first version
+
+The first version of the app was written by Gemini. I didn't know how it worked.
+
+And I really really did not like that.
+
+When I had people test it I'd have to ask Gemini to make it easier or harder.
+To make it less precise about how far the trace had to be to the line or the percent
+of the line that had to be covered. It had written code with magic constants everywhere,
+and when it was asked for a tweak it would search through and find the right value.
+
+And the app never felt right.
+
+### The second version
+
+![Tiger Trace Home](/assets/images/tiger-trace-home.png)
+
+So I rewrote it myself.
+
+There's not much to say about the stack. It's the one written [about in this blog](https://khromov.se/how-i-published-a-gratitude-journaling-app-for-ios-and-android-using-sveltekit-and-capacitor/).
+
+There's a Svelte website which is wrapped by Capacitor JS in a web view to launch as an app.
+Drawing is just accomplished by adding a dynamic polyline to the svg.
+
+Then everything else is handled by libraries:
+ - Svgs paths are parsed by `svg-path-parser`.
+ - Zoom animations are controlled by `gsap`.
+ - Colors are from `js-colormap`.
+ 
+And with that, you can draw.
+
+![Tiger Trace Drawing](/assets/images/tiger-trace-drawing.png)
+
+## Generating images: All the paths which didn't work
+
+An LLM could not do this by itself. That was my first attempt. Just ask an agent to build this app.
+It didn't work. But LLMs did allow exploring lots of bad ideas faster.
 
 ### Failure 1: Have the coding agent do everything
 
@@ -308,15 +349,19 @@ There's actually lots of noise in AI generated images and even if it's not visib
 really messes up attempts at color masking. Nanobana is also not very good at making strictly
 unique colored lines. It reuses colors, and it ends up blending colors when lines come close
 to each other. The noise from this set of images just foiled any attempts at post-processing.
+I'm still convinced this path could work if I spent more time and actually had a classifier
+try to group pixels based on the noisy lines coming from Nanobana, but it was going to take
+more time to do this than the rest of the project.
 
 When I asked an AI agent to write a python script for importing the images it made something
-which just output images which were clearly broken.
+which just output images which were clearly broken. No amount of feeding the broken images
+into the agent and asking it to fix things was going to get anywhere.
 
 ### Failure 3: Direct text to SVG
 
 What if Nanobana is introducing too much complexity?
 
-Gemini convinced me to try getting https://github.com/BachiLi/diffvg working to directly generate
+Gemini convinced me to try getting [diffvg](https://github.com/BachiLi/diffvg) working to directly generate
 vector graphics. And while the project looks cool, getting it working on RunPod was taking too
 long as I was teaching myself Docker just to get it to work. Considering it's a 6 year old project,
 and AI has moved a lot in the past few years, I decided it probably wasn't work persuing.
@@ -337,6 +382,17 @@ just wasn't helping any more.
 
 ## Conclusion
 
-You'll be able to download TigerTrace when it launches soon.
+All of this struggle was probably a pretty average experience with AI.
+
+It can do some very well things. It's honestly surprising how well it picks out the "important"
+lines with no further direction.
+
+Other times it was fairly frustrating. It can't actually draw something using a limited
+set of colors. Or make sure to keep the lines unique colors. Or reliably output an
+image with no background. Or output as JSON. Sometimes tweaking the prompt works. But
+when you run the same prompt 100 times a rare problem is just so much more likely to occur.
+Building in an ability to retry a limited subset just seems essential.
+
+Anyway, after all that you'll be able to download TigerTrace when it launches soon.
 
 And it won't have a subscription.
