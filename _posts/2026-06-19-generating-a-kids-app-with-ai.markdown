@@ -274,3 +274,69 @@ const {paths_var_name} = [
 
 And with that I end up with a different page for each image to be traced. ex. `myapp/trace/panda`.
 And it updates the JSON structure I'm using from the home page for the image picker.
+
+## All the paths which didn't work
+
+AI could not do this by itself. That was my first attempt. Just ask an agent to build this app.
+It didn't work. But AI did allow exploring lots of bad ideas faster.
+
+### Failure 1: Have the coding agent do everything
+
+Asking Antigravity to build the app from scratch including generating all media went better than I'd
+have expected. You could trace and it even make a somewhat competent cat consisting of a circle for
+the head and two triangles for the ears by manually writing an svg file.
+
+But that was about as complicated as the images could get, and many of them were quite broken. After
+exhausting my freebie Antigravity quota I tried Claude with playwrite to try to fix the images. I told
+Claude it was fixing the work of a different agent and somewhat amusingly it took the time to criticize
+Gemini's work, before making the images even worse.
+
+Clearly asking coding agent's to generate images is just the wrong task for the job.
+
+### Failure 2: Asking the AI agents to write an import pipeline
+
+Ok so Nanobana can generate the images but how can I make these into svgs.
+
+Inkscape has a "Trace bitmap" feature which even supports centerline tracing.
+It's not bad but everything is put into one line. There's "break paths" but it
+does not break into anything resembling natural tracing. Many things remain connected
+to the wrong thing.
+
+I tried going down this path where I'd ask Nanobana to make each line with a unique color.
+The idea was I could mask the image to look at one line at a time. This only kind of works.
+There's actually lots of noise in AI generated images and even if it's not visible to us it
+really messes up attempts at color masking. Nanobana is also not very good at making strictly
+unique colored lines. It reuses colors, and it ends up blending colors when lines come close
+to each other. The noise from this set of images just foiled any attempts at post-processing.
+
+When I asked an AI agent to write a python script for importing the images it made something
+which just output images which were clearly broken.
+
+### Failure 3: Direct text to SVG
+
+What if Nanobana is introducing too much complexity?
+
+Gemini convinced me to try getting https://github.com/BachiLi/diffvg working to directly generate
+vector graphics. And while the project looks cool, getting it working on RunPod was taking too
+long as I was teaching myself Docker just to get it to work. Considering it's a 6 year old project,
+and AI has moved a lot in the past few years, I decided it probably wasn't work persuing.
+
+Could be wrong though, I just never got it working.
+
+### What got me out of the failure cycle
+
+Ultimately what got me out of the cycle of failure was... putting down the agents.
+
+I opened up colab and visualized how I was transforming an image step-by-step as I ran it through
+various OpenCV, skeletonize, and other libraries.
+
+![Pirate Ship](/assets/images/pirate-colab.png)
+
+AI was useful for getting through the above failures pretty quickly. But then eventually it
+just wasn't helping any more.
+
+## Conclusion
+
+You'll be able to download TigerTrace when it launches soon.
+
+And it won't have a subscription.
