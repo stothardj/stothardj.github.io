@@ -436,7 +436,7 @@ much manual work on building a pipeline for creating the tracing guides.
 
 How people view the output of this project will depend on their view of AI. Is
 it AI slop? The images are clearly the work of AI image gen. The code had some
-AI influent. Or it's the promise of a dad being able to generate an app for
+AI influence. Or it's the promise of a dad being able to generate an app for
 their kid given a very limited amount of free time.
 
 If you have an Android phone you'll be able to download TigerTrace when it
