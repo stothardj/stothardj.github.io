@@ -28,7 +28,7 @@ github_username:  stothardj
 linkedin_username: jake-stothard-59497317
 
 # Build settings
-theme: minima
+theme: slate
 plugins:
   - jekyll-feed
 
