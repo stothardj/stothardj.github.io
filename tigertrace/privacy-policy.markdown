@@ -30,20 +30,19 @@ This Privacy Notice for TigerTrace ("**we**," "**us**," or "**our**"), describes
 **In what situations and with which parties do we share personal information?** We may share information in specific situations and with specific third parties. Learn more about [when and with whom we share your personal information](#whoshare).  
 **How do we keep your information safe?** We have adequate organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about [how we keep your information safe](#infosafe).  
 **What are your rights?** Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about [your privacy rights](#privacyrights).  
-**How do you exercise your rights?** The easiest way to exercise your rights is by visiting <http://www.deletethis.com/deleterequest>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.  
+**How do you exercise your rights?** The easiest way to exercise your rights is by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.  
 Want to learn more about what we do with any information we collect? [Review the Privacy Notice in full](#toc).  
   
 
-<div id="toc">
+<span id="toc"></span>
 
 ## TABLE OF CONTENTS
 
-</div>
 
 [1. WHAT INFORMATION DO WE COLLECT?](#infocollect)[2. HOW DO WE PROCESS YOUR INFORMATION?](#infouse)[3. WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR PERSONAL INFORMATION?](#legalbases)[4. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?](#whoshare) [5. HOW LONG DO WE KEEP YOUR INFORMATION?](#inforetain)[6. HOW DO WE KEEP YOUR INFORMATION SAFE?](#infosafe)[7. WHAT ARE YOUR PRIVACY RIGHTS?](#privacyrights)[8. CONTROLS FOR DO-NOT-TRACK FEATURES](#DNT)[9. DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?](#uslaws)[10. DO WE MAKE UPDATES TO THIS NOTICE?](#policyupdates)[11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?](#contact)[12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?](#request)  
   
 
-<div id="infocollect">
+<span id="infocollect"></span>
 
 <span id="control"></span>
 
@@ -55,21 +54,19 @@ Want to learn more about what we do with any information we collect? [Review th
 
 ***In Short:** ****We collect personal information that you provide to us.*
 
-</div>
 
   
 We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.  
 
-<div id="sensitiveinfo">
+<span id="sensitiveinfo"></span>
 
 **Sensitive Information.** We do not process sensitive information.
 
-</div>
 
   
 All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.  
 
-<div id="infouse">
+<span id="infouse"></span>
 
 <span id="control"></span>
 
@@ -77,7 +74,6 @@ All personal information that you provide to us must be true, complete, and accu
 
 ***In Short: ****We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We process the personal information for the following purposes listed below. We may also process your information for other purposes only with your prior explicit consent.*
 
-</div>
 
   
 **We process your personal information for a variety of reasons, depending on how you interact with our Services, including:**
@@ -86,13 +82,12 @@ All personal information that you provide to us must be true, complete, and accu
 
   
 
-<div id="legalbases">
+<span id="legalbases"></span>
 
 ## 3. WHAT LEGAL BASES DO WE RELY ON TO PROCESS YOUR INFORMATION?
 
 ***In Short: **We only process your personal information when we believe it is necessary and we have a valid legal reason (i.e., legal basis) to do so under applicable law, like with your consent, to comply with laws, to provide you with services to enter into or fulfill our contractual obligations, to protect your rights, or to fulfill our legitimate business interests.*
 
-</div>
 
   
 ***<u>If you are located in the EU or UK, this section applies to you.</u>***  
@@ -156,14 +151,13 @@ The General Data Protection Regulation (GDPR) and UK GDPR require us to explain 
   - We may disclose de-identified information for approved research or statistics projects, subject to ethics oversight and confidentiality commitments
 
     
-  <div id="whoshare">
+  <span id="whoshare"></span>
 
   <span id="control"></span>
   ## 4. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?
 
   ***In Short:**** We may share information in specific situations described in this section and/or with the following third parties.*
 
-  </div>
 
     
   We may need to share your personal information in the following situations:
@@ -171,7 +165,7 @@ The General Data Protection Regulation (GDPR) and UK GDPR require us to explain 
 
   
 
-<div id="inforetain">
+<span id="inforetain"></span>
 
 <span id="control"></span>
 
@@ -179,13 +173,12 @@ The General Data Protection Regulation (GDPR) and UK GDPR require us to explain 
 
 ***In Short: ****We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law.*
 
-</div>
 
   
 We will only keep your personal information for as long as it is necessary for the purposes set out in this Privacy Notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements).  
 When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.  
 
-<div id="infosafe">
+<span id="infosafe"></span>
 
 <span id="control"></span>
 
@@ -193,12 +186,11 @@ When we have no ongoing legitimate business need to process your personal inform
 
 ***In Short: ****We aim to protect your personal information through a system of organizational and technical security measures.*
 
-</div>
 
   
 We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.  
 
-<div id="privacyrights">
+<span id="privacyrights"></span>
 
 <span id="control"></span>
 
@@ -206,24 +198,22 @@ We have implemented appropriate and reasonable technical and organizational secu
 
 ***In Short:**** Depending on your state of residence in the US or in some regions, such as the European Economic Area (EEA), United Kingdom (UK), Switzerland, and Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.*
 
-</div>
 
   
 In some regions (like the EEA, UK, Switzerland, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; (iv) if applicable, to data portability; and (v) not to be subject to automated decision-making. If a decision that produces legal or similarly significant effects is made solely by automated means, we will inform you, explain the main factors, and offer a simple way to request human review. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section "[HOW CAN YOU CONTACT US ABOUT THIS NOTICE?](#contact)" below.  
 We will consider and act upon any request in accordance with applicable data protection laws. If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your [Member State data protection authority](https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm) or [UK data protection authority](https://ico.org.uk/make-a-complaint/data-protection-complaints/data-protection-complaints/).  
 If you are located in Switzerland, you may contact the [Federal Data Protection and Information Commissioner](https://www.edoeb.admin.ch/edoeb/en/home.html).  
 
-<div id="withdrawconsent">
+<span id="withdrawconsent"></span>
 
 **<u>Withdrawing your consent:</u>** If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "[HOW CAN YOU CONTACT US ABOUT THIS NOTICE?](#contact)" below.
 
-</div>
 
   
 However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.  
 If you have questions or comments about your privacy rights, you may email us at <stothardj@gmail.com>.  
 
-<div id="DNT">
+<span id="DNT"></span>
 
 <span id="control"></span>
 
@@ -231,12 +221,11 @@ If you have questions or comments about your privacy rights, you may email us at
 
 Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this Privacy Notice.
 
-</div>
 
   
 California law requires us to let you know how we respond to web browser DNT signals. Because there currently is not an industry or legal standard for recognizing or honoring DNT signals, we do not respond to them at this time.  
 
-<div id="uslaws">
+<span id="uslaws"></span>
 
 <span id="control"></span>
 
@@ -248,7 +237,6 @@ California law requires us to let you know how we respond to web browser DNT sig
 
 The table below shows the categories of personal information we have collected in the past twelve (12) months. The table includes illustrative examples of each category and does not reflect the personal information we collect from you. For a comprehensive inventory of all personal information we process, please refer to the section "[WHAT INFORMATION DO WE COLLECT?](#infocollect)"
 
-</div>
 
   
 
@@ -440,7 +428,7 @@ If you submit the request through an authorized agent, we may need to collect ad
 
 Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <stothardj@gmail.com>. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.  
 
-<div id="policyupdates">
+<span id="policyupdates"></span>
 
 <span id="control"></span>
 
@@ -448,12 +436,11 @@ Under certain US state data protection laws, if we decline to take action regard
 
 ***In Short: **Yes, we will update this notice as necessary to stay compliant with relevant laws.*
 
-</div>
 
   
 We may update this Privacy Notice from time to time. The updated version will be indicated by an updated "Revised" date at the top of this Privacy Notice. If we make material changes to this Privacy Notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information.  
 
-<div id="contact">
+<span id="contact"></span>
 
 <span id="control"></span>
 
@@ -461,12 +448,11 @@ We may update this Privacy Notice from time to time. The updated version will be
 
 If you have questions or comments about this notice, you may email us at <stothardj@gmail.com> or contact us by post at:
 
-</div>
 
   
-\_\_\_\_\_\_\_\_\_\_4129 Wilkie CtPalo Alto, CA CAUnited States  
+Jake Stothard, 4129 Wilkie Ct, Palo Alto, CA, United States  
 
-<div id="request">
+<span id="request"></span>
 
 <span id="control"></span>
 
@@ -474,7 +460,6 @@ If you have questions or comments about this notice, you may email us at <stotha
 
 Based on the applicable laws of your country or state of residence in the US, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. To request to review, update, or delete your personal information, please visit: <http://www.deletethis.com/deleterequest>.[](https://app.termly.io/dsar/82d79f6c-b2d1-4270-9631-b8f6d8161c71)
 
-</div>
 
   
 This Privacy Policy was created using Termly's [Privacy Policy Generator](https://termly.io/products/privacy-policy-generator/)
